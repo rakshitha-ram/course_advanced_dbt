@@ -12,7 +12,7 @@ models:
           priority: high
         data_tests:
           - not_null
-          - unique
+
 
       - name: created_at
         description: When the user account was created.
@@ -29,6 +29,5 @@ models:
 
       - name: event_id
         description: event_id
-      
-
-     
+        data_tests:
+          - unique

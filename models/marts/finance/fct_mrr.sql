@@ -81,7 +81,7 @@ subscriber_months AS (
             -- All months after start date
             ON months.date_month >= subscribers.first_start_month
                 -- and before end date
-                AND months.date_month < subscribers.last_end_month
+                AND subscribers.last_end_month > months.date_month
 ),
 
 -- Join together to create base CTE for MRR calculations
@@ -179,15 +179,15 @@ final AS (
         mrr_change,
         LEAST(mrr, previous_month_mrr_amount) AS retained_mrr_amount,
         previous_month_mrr_amount,
-
-        CASE
-            WHEN is_first_subscription_month THEN 'new'
-            WHEN NOT(is_subscribed_current_month) AND is_subscribed_previous_month THEN 'churn'
-            WHEN is_subscribed_current_month AND NOT(is_subscribed_previous_month) THEN 'reactivation'
-            WHEN mrr_change > 0.0 THEN 'upgrade'
-            WHEN mrr_change < 0.0 THEN 'downgrade'
-            ELSE 'renewal'
-        END AS change_category,
+        {{ calculate_change_category('is_first_subscription_month', 'is_subscribed_current_month', 'is_subscribed_previous_month', 'mrr_change') }} AS change_category,
+        -- CASE
+        --     WHEN is_first_subscription_month THEN 'new'
+        --     WHEN NOT(is_subscribed_current_month) AND is_subscribed_previous_month THEN 'churn'
+        --     WHEN is_subscribed_current_month AND NOT(is_subscribed_previous_month) THEN 'reactivation'
+        --     WHEN mrr_change > 0.0 THEN 'upgrade'
+        --     WHEN mrr_change < 0.0 THEN 'downgrade'
+        --     ELSE 'renewal'
+        -- END AS change_category,
 
         -- Add month_retained_number for cohort analysis
         CASE
@@ -198,8 +198,8 @@ final AS (
     FROM
         mrr_with_changes
         LEFT JOIN subscription_periods
-            ON subscription_periods.user_id = mrr_with_changes.user_id
-                AND subscription_periods.subscription_id = mrr_with_changes.subscription_id
+            ON mrr_with_changes.user_id = subscription_periods.user_id
+                AND mrr_with_changes.subscription_id = subscription_periods.subscription_id
     WHERE
         date_month <= DATE_TRUNC('month', CURRENT_DATE)
 )

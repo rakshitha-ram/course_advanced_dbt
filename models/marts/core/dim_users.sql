@@ -39,4 +39,4 @@ final AS (
         LEFT JOIN users_subscription_facts AS usf ON u.user_id = usf.user_id
 )
 
-SELECT * FROM final
+ SELECT * FROM final

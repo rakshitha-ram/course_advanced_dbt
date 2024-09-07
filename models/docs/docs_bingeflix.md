@@ -22,34 +22,34 @@ When the user's account was deleted. The value is NULL if the account has not be
 
 {% docs bingeflix_column_username %}
 The username for login to Bingeflix.
-{% enddocs %}  
+{% enddocs %}
 
 {% docs bingeflix_column_name %}
 The name of the user
 {% enddocs %}
-  
+
 {% docs bingeflix_column_sex %}
 The user's sex at birth.
 {% enddocs %}
 
-  
+
 {% docs bingeflix_column_email %}
 The user's email address.
 {% enddocs %}
-      
+
 {% docs bingeflix_column_birthdate %}
 The user's birthdate.
-{% enddocs %}   
+{% enddocs %}
 
 {% docs bingeflix_column_region %}
 Where the user resides (i.e. the state or province).
-{% enddocs %} 
+{% enddocs %}
 
 {% docs bingeflix_column_country %}
 Where the user resides
-{% enddocs %} 
-   
+{% enddocs %}
+
 ## Events
 {% docs bingeflix_column_event_id %}
-The unique identifier of the Bingeflix event. 
+The unique identifier of the Bingeflix event.
 {% enddocs %}

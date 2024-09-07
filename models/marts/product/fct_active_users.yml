@@ -16,3 +16,7 @@ models:
 
       - name: LOGIN_COUNT
         description: The total number of logins for a given user in a given week.
+      - name: macro_test
+        description: macro_test
+      - name: macro_test_two
+        description: macro_test_two
