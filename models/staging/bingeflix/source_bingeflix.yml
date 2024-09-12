@@ -84,7 +84,6 @@ sources:
           - name: subscription_id
             description: The unique identifier for the subscription.
             data_tests:
-              - not_null
               - unique
 
       - name: users

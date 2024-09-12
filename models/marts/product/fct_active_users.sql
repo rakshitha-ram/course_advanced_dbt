@@ -33,7 +33,6 @@ final AS (
 )
 
 SELECT *,
-{{rolling_average_7_periods(column_name ='login_count', partition_by='user_id')}} as macro_test,
-{{rolling_aggregate(column_name='login_count', partition_by='user_id', aggregate_function='sum', periods=30)}} as macro_test_2
+{{rolling_average_7_periods(column_name ='login_count', partition_by='user_id')}}
 
     FROM final

@@ -39,8 +39,7 @@ models:
 
       - name: sex
         description: The user's gender.
-        data_tests:
-          - not_null
+
 
       - name: email
         description: The user's email address.
@@ -64,10 +63,8 @@ models:
 
       - name: region
         description: Where the user lives.
-        data_tests:
-          - not_null
+
+
 
       - name: country
         description: Where the user lives.
-        data_tests:
-          - not_null

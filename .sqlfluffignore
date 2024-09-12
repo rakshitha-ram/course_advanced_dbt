@@ -4,5 +4,4 @@ dbt_packages/
 
 # other
 analysis/
-macros/
 .venv/
