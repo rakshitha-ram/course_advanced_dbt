@@ -1,4 +1,9 @@
-{{ config(materialized='table') }}
+{{
+    config(
+        materialized='incremental',
+        unique_key='event_id'
+    )
+}}
 
 SELECT
     session_id,
